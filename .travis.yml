@@ -3,9 +3,8 @@ jdk: oraclejdk8
 before_install:
   - ./install_j2objc.sh
 env:
-- J2OBJC_HOME=$HOME/j2objc
+- J2OBJC_HOME=./j2objc
 cache:
   directories:
   - $HOME/.m2  
-  - j2objc  
   
