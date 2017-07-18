@@ -25,7 +25,7 @@
 			<groupId>com.google.j2objc</groupId>
 			<artifactId>j2objc-annotations</artifactId>
 			<version>${j2objc-annotations.version}</version>
-		</dependency>		<!-- https://mvnrepository.com/artifact/com.eclipsesource.minimal-json/minimal-json -->
+		</dependency>		
 		<dependency>
 			<groupId>com.eclipsesource.minimal-json</groupId>
 			<artifactId>minimal-json</artifactId>
@@ -121,6 +121,19 @@
 										<ignore />
 									</action>
 								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>license-maven-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>check-file-header</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -166,8 +179,7 @@
 				<configuration>
 					<systemPropertyVariables>
 						<!-- Set JUL Formatting -->
-						<java.util.logging.SimpleFormatter.format>%1$tb
-							%1$td,%1$tY%1$tl:%1$tM:%1$tS %1$Tp %2$s %4$s: %5$s%n</java.util.logging.SimpleFormatter.format>
+						<java.util.logging.SimpleFormatter.format>%1$tb%1$td,%1$tY%1$tl:%1$tM:%1$tS %1$Tp %2$s %4$s: %5$s%n</java.util.logging.SimpleFormatter.format>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
@@ -181,6 +193,29 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${license-plugin.version}</version>
+				<configuration>
+					<licenseName>apache_v2</licenseName>
+					<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+					<failOnMissingHeader>true</failOnMissingHeader>
+					<failOnNotUptodateHeader>true</failOnNotUptodateHeader>
+					<roots>
+						<root>src/main/java</root>
+						<root>src/test/java</root>
+					</roots>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>check-file-header</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<modules>
@@ -191,6 +226,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<junit.version>4.11</junit.version>
 		<java.version>1.7</java.version>
+		<minimal-json.version>0.9.4</minimal-json.version>
 		<j2objc-plugin.version>1.1.4</j2objc-plugin.version>
 		<j2objc-annotations.version>1.3</j2objc-annotations.version>
 		<compiler-plugin.version>2.1</compiler-plugin.version>
@@ -200,7 +236,11 @@
 		<dependency-plugin.version>3.0.1</dependency-plugin.version>
 		<clean-plugin.version>3.0.0</clean-plugin.version>
 		<exec-plugin.version>1.5.0</exec-plugin.version>
-		<minimal-json.version>0.9.1</minimal-json.version>
+		<license-plugin.version>1.7</license-plugin.version>
 		<j2objc.path>${J2OBJC_HOME}</j2objc.path>
 	</properties>
+	<inceptionYear>2017</inceptionYear>
+	<organization>
+		<name>MRS Internet Service GmbH</name>
+	</organization>
 </project>

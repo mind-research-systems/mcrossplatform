@@ -17,18 +17,19 @@
  * limitations under the License.
  * #L%
  */
-package org.mcrossplatform.service;
+package org.mcrossplatform.service.impl;
+
+import org.mcrossplatform.service.IMath;
 
 /**
- * Initial version of javascript api without variable binding.
- * Just pass a javascript function and evaluate to an object.
+ * Another implementation of sample service IMath
  * @author donatmueller
- *
  */
-public interface IJavaScript {
-	IJavaScriptEngine createEngine(String javascript);
-	
-	static interface IJavaScriptEngine {
-		Object evaluate(String function);
+public class MathImpl implements IMath {
+
+	@Override
+	public int add(final int a, final int b) {
+		return a + b;
 	}
+
 }

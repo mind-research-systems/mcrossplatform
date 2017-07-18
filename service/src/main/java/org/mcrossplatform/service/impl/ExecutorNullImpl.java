@@ -17,18 +17,19 @@
  * limitations under the License.
  * #L%
  */
-package org.mcrossplatform.service;
+package org.mcrossplatform.service.impl;
+
+import org.mcrossplatform.service.IExecutor;
 
 /**
- * Initial version of javascript api without variable binding.
- * Just pass a javascript function and evaluate to an object.
+ * Default implementation for the IExecutor service.
  * @author donatmueller
- *
  */
-public interface IJavaScript {
-	IJavaScriptEngine createEngine(String javascript);
-	
-	static interface IJavaScriptEngine {
-		Object evaluate(String function);
+public class ExecutorNullImpl implements IExecutor {
+
+	@Override
+	public int execute(final String programm, final String... args) {
+		return 0;
 	}
+
 }
