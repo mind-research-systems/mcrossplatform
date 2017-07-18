@@ -19,8 +19,7 @@
  */
 package org.mcrossplatform.service.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.mcrossplatform.service.IJavaScript;
@@ -34,10 +33,10 @@ public class JavaScriptImplTest {
 		final IJavaScript testee = new JavaScriptImpl();
 		// act
 		IJavaScriptEngine engine = testee.createEngine("function sum(a, b) { return a + b; }");
-		final Object result = engine.evaluate("sum(2, 7);");
+		final Object result = engine.evaluate("sum(2.0, 7);");
 		// assert
 		assertNotNull(result);
-		assertEquals(Double.class,result.getClass());
+		assertTrue(Number.class.isInstance(result));
 		assertEquals(9.0,result);
 	}
 }
