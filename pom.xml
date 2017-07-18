@@ -25,6 +25,11 @@
 			<groupId>com.google.j2objc</groupId>
 			<artifactId>j2objc-annotations</artifactId>
 			<version>${j2objc-annotations.version}</version>
+		</dependency>		<!-- https://mvnrepository.com/artifact/com.eclipsesource.minimal-json/minimal-json -->
+		<dependency>
+			<groupId>com.eclipsesource.minimal-json</groupId>
+			<artifactId>minimal-json</artifactId>
+			<version>${minimal-json.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -52,8 +57,26 @@
 						<d>${project.build.directory}/j2objc</d>
 						<failOnErrors>true</failOnErrors>
 						<dependencies>
+							<dependency>
+								<groupId>com.eclipsesource.minimal-json</groupId>
+								<artifactId>minimal-json</artifactId>
+								<version>${minimal-json.version}</version>
+							</dependency>
 						</dependencies>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${dependency-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>download-sources</id>
+							<goals>
+								<goal>sources</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<artifactId>exec-maven-plugin</artifactId>
@@ -65,30 +88,43 @@
 					<artifactId>maven-failsafe-plugin</artifactId>
 					<version>${failsafe-plugin-version}</version>
 				</plugin>
-			    <plugin>
-			     <groupId>org.eclipse.m2e</groupId>
-			     <artifactId>lifecycle-mapping</artifactId>
-			     <version>1.0.0</version>
-			     <configuration>
-			       <lifecycleMappingMetadata>
-			         <pluginExecutions>
-			           <pluginExecution>
-			             <pluginExecutionFilter>
-			               <groupId>org.apache.maven.plugins</groupId>
-			               <artifactId>maven-enforcer-plugin</artifactId>
-			               <versionRange>[1.0.0,)</versionRange>
-			               <goals>
-			                 <goal>enforce</goal>
-			               </goals>
-			             </pluginExecutionFilter>
-			             <action>
-			               <ignore/>
-			             </action>
-			           </pluginExecution>
-			         </pluginExecutions>
-			       </lifecycleMappingMetadata>
-			     </configuration>
-			    </plugin>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-enforcer-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>enforce</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>sources</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -105,9 +141,10 @@
 						<configuration>
 							<rules>
 								<requireProperty>
-									<property>J2OBJC_HOME</property>
+									<property>j2objc.path</property>
 									<message>You must define the path to your j2objc installation.
-TODO: Export J2OBJC_HOME in your environment variables configuration.</message>
+										TODO: Export J2OBJC_HOME in your environment variables
+										configuration.</message>
 								</requireProperty>
 							</rules>
 							<fail>true</fail>
@@ -129,7 +166,8 @@ TODO: Export J2OBJC_HOME in your environment variables configuration.</message>
 				<configuration>
 					<systemPropertyVariables>
 						<!-- Set JUL Formatting -->
-						<java.util.logging.SimpleFormatter.format>%1$tb %1$td, %1$tY%1$tl:%1$tM:%1$tS %1$Tp %2$s %4$s: %5$s%n</java.util.logging.SimpleFormatter.format>
+						<java.util.logging.SimpleFormatter.format>%1$tb
+							%1$td,%1$tY%1$tl:%1$tM:%1$tS %1$Tp %2$s %4$s: %5$s%n</java.util.logging.SimpleFormatter.format>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
@@ -159,8 +197,10 @@ TODO: Export J2OBJC_HOME in your environment variables configuration.</message>
 		<surefire-plugin-version>2.19.1</surefire-plugin-version>
 		<failsafe-plugin-version>2.19.1</failsafe-plugin-version>
 		<resource-plugin.version>3.0.1</resource-plugin.version>
+		<dependency-plugin.version>3.0.1</dependency-plugin.version>
 		<clean-plugin.version>3.0.0</clean-plugin.version>
 		<exec-plugin.version>1.5.0</exec-plugin.version>
+		<minimal-json.version>0.9.1</minimal-json.version>
 		<j2objc.path>${J2OBJC_HOME}</j2objc.path>
 	</properties>
 </project>
