@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.mcrossplatform</groupId>
+		<artifactId>mcrossplatform</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>service</artifactId>
+	<description>service definitions and infrastructure code</description>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.smoope.utils</groupId>
+				<artifactId>j2objc-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	<properties>
+		<main.basedir>${project.parent.basedir}</main.basedir>
+	</properties>
+</project>
