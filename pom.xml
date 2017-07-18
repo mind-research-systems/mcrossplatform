@@ -184,6 +184,25 @@
 				</configuration>
 			</plugin>
 			<plugin>
+			    <groupId>org.eluder.coveralls</groupId>
+			    <artifactId>coveralls-maven-plugin</artifactId>
+			    <version>${coveralls-plugin.version}</version>
+			    <configuration>
+			        <repoToken>ySiMhEw7oV1EsSTGBwQXszelc75EQ8NFO</repoToken>
+			    </configuration>
+			</plugin>			
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>cobertura-maven-plugin</artifactId>
+			    <version>${cobertura-plugin.version}</version>
+			    <configuration>
+			        <format>xml</format>
+			        <maxmem>256m</maxmem>
+			        <!-- aggregated reports for multi-module projects -->
+			        <aggregate>true</aggregate>
+			    </configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${compiler-plugin.version}</version>
@@ -224,6 +243,7 @@
 	<properties>
 		<main.basedir>${project.basedir}</main.basedir>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>
 		<java.version>1.7</java.version>
 		<minimal-json.version>0.9.4</minimal-json.version>
@@ -236,6 +256,8 @@
 		<dependency-plugin.version>3.0.1</dependency-plugin.version>
 		<clean-plugin.version>3.0.0</clean-plugin.version>
 		<exec-plugin.version>1.5.0</exec-plugin.version>
+		<coveralls-plugin.version>4.3.0</coveralls-plugin.version>
+		<cobertura-plugin.version>2.7</cobertura-plugin.version>
 		<license-plugin.version>1.7</license-plugin.version>
 		<j2objc.path>${J2OBJC_HOME}</j2objc.path>
 	</properties>
