@@ -45,7 +45,7 @@ public class Validate {
 
 	public static void jsonSerializable(Object obj) {
 		if (!(obj instanceof JsonSerializable)) {
-			throw new IllegalArgumentException(String.format("Unsupported parameter type %s JsonSerializable expected.", obj == null ? "<null>" : obj.getClass()));
+			throw new IllegalArgumentException(String.format("Unsupported parameter type %s JsonSerializable expected.", obj == null ? "<null>" : obj.getClass().getName()));
 		}
 	}
 

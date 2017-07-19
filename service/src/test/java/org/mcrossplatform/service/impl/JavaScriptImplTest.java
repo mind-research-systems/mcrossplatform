@@ -19,16 +19,23 @@
  */
 package org.mcrossplatform.service.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mcrossplatform.service.IJavaScript;
 import org.mcrossplatform.service.IJavaScript.IJavaScriptEngine;
 
 public class JavaScriptImplTest {
 
+	@Rule
+	public ExpectedException exceptionRule = ExpectedException.none();
+	
 	@Test
-	public void add_TwoPlusSeven_ReuturnsNine() {
+	public void evaluate_TwoPlusSeven_ReuturnsNine() {
 		// arrange
 		final IJavaScript testee = new JavaScriptImpl();
 		// act
@@ -39,4 +46,26 @@ public class JavaScriptImplTest {
 		assertTrue(Number.class.isInstance(result));
 		assertEquals(9.0,result);
 	}
+	
+	@Test
+	public void createEngine_IllegalFunction_Exception() {
+		// arrange & pre assert
+		final IJavaScript testee = new JavaScriptImpl();
+		exceptionRule.expect(RuntimeException.class);
+		exceptionRule.expectMessage("Exception creating javascript engin with script: 'function var foo'");
+		// act
+		testee.createEngine("function var foo");
+	}
+	
+	@Test
+	public void createEngine_IllegalInvocation_Exception() {
+		// arrange & pre assert
+		final IJavaScript testee = new JavaScriptImpl();
+		exceptionRule.expect(RuntimeException.class);
+		IJavaScriptEngine engine = testee.createEngine("function foo() { return 'bar'; }");
+		exceptionRule.expectMessage("Exception evaluating javascript function: 'bar();'");
+		// act
+		engine.evaluate("bar();");
+	}
+	
 }
