@@ -12,7 +12,7 @@ before_cache:
   - rm -rf $HOME/.m2/repository/org/mcrossplatform/mcrossplatform/*
   
 env:
-- J2OBJC_HOME=./j2objc
+- J2OBJC_HOME=$HOME/j2objc
 
 before_install:
   - ./install_j2objc.sh
