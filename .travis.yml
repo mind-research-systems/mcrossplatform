@@ -2,10 +2,15 @@ language: java
 
 sudo: false
 
+jdk: oraclejdk8
+
 cache:
   directories:
   - $HOME/.m2  
   - $HOME/j2objc
+
+before_cache:
+  - rm -rf $HOME/.m2/repository/org/mcrossplatform/*  
   
 env:
 - J2OBJC_HOME=$HOME/j2objc
@@ -13,8 +18,6 @@ env:
 before_install:
   - ./install_j2objc.sh
   
-before_cache:
-  - rm -rf $HOME/.m2/repository/org/mcrossplatform/*  
 
 after_success:
   - mvn clean cobertura:cobertura coveralls:report  
