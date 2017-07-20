@@ -41,9 +41,8 @@ public class PropertiesLoader {
 				properties.load(fis);
 				return properties;
 			} catch (final Exception e) {
-				LOGGER.log(Level.SEVERE,
-						e.getMessage(), e);
-				throw new RuntimeException(e);
+				LOGGER.log(Level.SEVERE,e.getMessage(), e);
+				throw new ResourceException(String.format("Exception while loading %s", f),e);
 			} 
 		}
 		return null;

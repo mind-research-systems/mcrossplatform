@@ -54,7 +54,7 @@ public class FileResourceLocator {
 		if (!mayReturnNull) {
 			final String message = String.format("File: %s not found in path: %s.", fileName, folders);
 			LOGGER.log(Level.SEVERE,message);
-			throw new RuntimeException(message);
+			throw new ResourceException(message);
 			
 		}
 		return null;
