@@ -9,5 +9,5 @@ if [ ! -f "$HOME/j2objc/j2objc" ]; then
 	mv $HOME/j2objc-2.0.1 $HOME/j2objc
 	rm $HOME/j2objc.zip
 else
-	echo found $HOME/j2objc -> no download	
+	echo found $HOME/j2objc/j2objc -> no download	
 fi
