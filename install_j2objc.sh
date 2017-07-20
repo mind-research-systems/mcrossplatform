@@ -4,7 +4,7 @@ if [ ! -d "$HOME/j2objc" ]; then
 	set -e
 	curl -L -o $HOME/j2objc.zip https://github.com/google/j2objc/releases/download/2.0.1/j2objc-2.0.1.zip
 	unzip -q $HOME/j2objc.zip
-	rm -rf $HOME/j2objc
+	rm -rf -d $HOME $HOME/j2objc
 	mv $HOME/j2objc-2.0.1 $HOME/j2objc
 	rm $HOME/j2objc.zip
 else
