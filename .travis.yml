@@ -1,11 +1,19 @@
 language: java
+
+sudo: false
+
 jdk: oraclejdk8
-before_install:
-  - ./install_j2objc.sh
-env:
-- J2OBJC_HOME=./j2objc
+
 cache:
   directories:
   - $HOME/.m2  
+  - j2objc
+
+env:
+- J2OBJC_HOME=./j2objc
+
+before_install:
+  - ./install_j2objc.sh
+
 after_success:
   - mvn clean cobertura:cobertura coveralls:report  
