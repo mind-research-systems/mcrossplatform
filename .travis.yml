@@ -8,14 +8,15 @@ cache:
   directories:
   - $HOME/.m2  
   - $HOME/j2objc
-before_cache:
-  - rm -rf $HOME/.m2/repository/org/mcrossplatform/mcrossplatform/*
   
 env:
 - J2OBJC_HOME=$HOME/j2objc
 
 before_install:
   - ./install_j2objc.sh
+  
+before_cache:
+  - rm -rf $HOME/.m2/repository/org/mcrossplatform/mcrossplatform/*  
 
 after_success:
   - mvn clean cobertura:cobertura coveralls:report  
