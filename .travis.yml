@@ -16,7 +16,7 @@ before_install:
   - ./install_j2objc.sh
   
 before_cache:
-  - rm -rf $HOME/.m2/repository/org/mcrossplatform/mcrossplatform/*  
+  - rm -rf $HOME/.m2/repository/org/mcrossplatform/*  
 
 after_success:
   - mvn clean cobertura:cobertura coveralls:report  
