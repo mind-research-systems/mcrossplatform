@@ -29,6 +29,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.mcrossplatform.resource.PropertiesLoader;
+import org.mcrossplatform.resource.ResourceException;
 
 public final class ServiceLocator {
 	private static final Logger LOGGER = Logger.getLogger(ServiceLocator.class.getName());
@@ -102,17 +103,14 @@ public final class ServiceLocator {
 			final Object serviceImpl = Class.forName(implClassName).newInstance();
 			register(iface, serviceImpl);
 		} catch (final ClassNotFoundException e) {
-			LOGGER.log(Level.SEVERE,
-					String.format(CLASS_NOT_FOUND, implClassName), e);
-//			throw new RuntimeException(e);
+			LOGGER.log(Level.SEVERE, String.format(CLASS_NOT_FOUND, implClassName), e);
+			// no re throw on not found class: to avoid overwriting of general configuration with dummy implementation for target platforms
 		} catch (final InstantiationException e) {
-			LOGGER.log(Level.SEVERE,
-					String.format(NO_DEFAULT_CTOR, implClassName), e);
-			throw new RuntimeException(e);
+			LOGGER.log(Level.SEVERE, String.format(NO_DEFAULT_CTOR, implClassName), e);
+			throw new ResourceException(e);
 		} catch (final IllegalAccessException e) {
-			LOGGER.log(Level.SEVERE,
-					String.format(NO_PERMISSION, implClassName), e);
-			throw new RuntimeException(e);
+			LOGGER.log(Level.SEVERE, String.format(NO_PERMISSION, implClassName), e);
+			throw new ResourceException(e);
 		} 
 	}
 
