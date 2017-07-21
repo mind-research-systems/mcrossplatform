@@ -44,12 +44,14 @@ import org.junit.rules.ExpectedException;
 public class LogConfigurationReaderTest {
 	private final static Level[] LOG_LEVELS = new Level[] {Level.ALL,Level.SEVERE,Level.WARNING,Level.INFO,Level.FINE,Level.FINER, Level.FINEST};
 	private final static String[] LOG_MESSAGES = new String[]{"All","Severe","Warning","Info","Fine","Finer","Finest"};
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
+
 	@Before
 	public void resetLogManager() {
 		LogManager.getLogManager().reset();
 	}
-	@Rule
-	public ExpectedException exception = ExpectedException.none();
+
 	@Test
 	public void readLogProperties_PropertiesFileFound_TwoHandlers() {
 		// arrange & act
@@ -58,6 +60,7 @@ public class LogConfigurationReaderTest {
 		final Handler[] handlers = LogManager.getLogManager().getLogger("").getHandlers();
 		assertEquals(2,handlers.length);
 	}
+
 	@Test
 	public void readLogProperties_PropertiesNotFileFound_ZeroHandlers() {
 		// arrange & act
@@ -66,6 +69,7 @@ public class LogConfigurationReaderTest {
 		final Handler[] handlers = LogManager.getLogManager().getLogger("").getHandlers();
 		assertEquals(0,handlers.length);
 	}
+
 	@Test
 	public void readLogProperties_PropertiesNotAFile_FileNotFoundException() {
 		// arrange & assert
