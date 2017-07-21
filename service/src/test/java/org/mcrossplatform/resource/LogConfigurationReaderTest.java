@@ -69,8 +69,8 @@ public class LogConfigurationReaderTest {
 	@Test
 	public void readLogProperties_PropertiesNotAFile_FileNotFoundException() {
 		// arrange & assert
-		exception.expect(ResourceException.class);
-//		exception.expectMessage("java.io.FileNotFoundException: ./src/test/resources/DirectoryNotAFile (Is a directory)");
+		exception.expect(ResourceException.class);		
+		exception.expectMessage("java.io.FileNotFoundException: ./src/test/resources/DirectoryNotAFile (Is a directory)");
 		// act
 		LogConfigurationReader.readLogProperties("DirectoryNotAFile");
 	}

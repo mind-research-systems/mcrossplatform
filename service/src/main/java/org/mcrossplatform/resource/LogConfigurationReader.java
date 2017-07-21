@@ -36,7 +36,7 @@ public class LogConfigurationReader {
 			try {
 				LogManager.getLogManager().readConfiguration(new FileInputStream(logProperties));
 			} catch (final Exception e) {
-				throw new ResourceException(String.format("Exception while loading %s", loggingProperties),e);
+				throw new ResourceException(e);
 			} 
 		} else {
 			System.out.println(String.format("WARNING: Log properteis %s not found",loggingProperties));

@@ -42,7 +42,7 @@ public class PropertiesLoader {
 				return properties;
 			} catch (final Exception e) {
 				LOGGER.log(Level.SEVERE,e.getMessage(), e);
-				throw new ResourceException(String.format("Exception while loading %s", f),e);
+				throw new ResourceException(e);
 			} 
 		}
 		return null;

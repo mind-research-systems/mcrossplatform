@@ -22,12 +22,8 @@ package org.mcrossplatform.resource;
 public class ResourceException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
-	public ResourceException() {
-		super();
-	}
-
-	public ResourceException(String message, Throwable cause) {
-		super(message, cause);
+	public ResourceException(Throwable cause) {
+		super(cause);
 	}
 
 	public ResourceException(String message) {
