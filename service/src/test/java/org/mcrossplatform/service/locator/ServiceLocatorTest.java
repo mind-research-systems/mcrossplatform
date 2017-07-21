@@ -46,13 +46,9 @@ import org.mcrossplatform.service.locator.testservice.ShadowingMathImpl;
 
 public class ServiceLocatorTest {
 
-	private static interface IUnknown {
-		
-	}
-	
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
-
+	
 	@BeforeClass
 	public static void initializeLogging()  {
 		LogConfigurationReader.readLogProperties();
@@ -167,4 +163,5 @@ public class ServiceLocatorTest {
 	  constructor.newInstance();
 	}	
 	
+	private static interface IUnknown {}
 }
