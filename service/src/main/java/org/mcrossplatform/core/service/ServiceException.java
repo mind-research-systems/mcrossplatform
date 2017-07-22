@@ -18,24 +18,21 @@
  * #L%
  */
 
-package org.mcrossplatform.core.service.testservice;
+package org.mcrossplatform.core.service;
 
-public class HelloServiceNoPublicCtorImpl implements IHelloService {
-  private final String message;
-  
-  public HelloServiceNoPublicCtorImpl(String message) {
-    super();
-    this.message = message;
+public class ServiceException extends RuntimeException {
+  private static final long serialVersionUID = 1L;
+
+  public ServiceException(String message, Throwable cause) {
+    super(message, cause);
   }
 
-  @SuppressWarnings("unused")
-  private HelloServiceNoPublicCtorImpl() {
-    this(null);
+  public ServiceException(String message) {
+    super(message);
   }
-  
-  @Override
-  public String sayHello() {
-    return message;
+
+  public ServiceException(Throwable cause) {
+    super(cause);
   }
 
 }

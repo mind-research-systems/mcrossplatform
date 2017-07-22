@@ -22,7 +22,6 @@ package org.mcrossplatform.core.transport.json;
 
 import com.eclipsesource.json.JsonValue;
 import java.io.Closeable;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.logging.Level;
@@ -31,6 +30,7 @@ import java.util.logging.Logger;
 import org.mcrossplatform.core.resource.ResourceCloser;
 import org.mcrossplatform.core.transport.SerializationException;
 import org.mcrossplatform.core.validation.Validate;
+
 
 
 /**
@@ -49,7 +49,7 @@ class JsonSerializer implements Closeable {
     this.jsonToServer = new OutputStreamWriter(out);
   }
 
-  void serialize(JsonSerializable object) throws IOException {
+  void serialize(JsonSerializable object) throws SerializationException {
     Validate.notNull(object);
     try {
       LOGGER.finest(

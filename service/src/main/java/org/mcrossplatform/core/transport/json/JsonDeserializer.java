@@ -42,8 +42,8 @@ class JsonDeserializer implements Closeable {
     this.jsonFromClient = new BufferedReader(new InputStreamReader(in));
   }
 
-  JsonSerializable deserialize() throws IOException {
-    String object = jsonFromClient.readLine();
+  JsonSerializable deserialize() throws DeserializationException {
+    String object = readNextJsonObject();
     LOGGER.finest(object);
     if (object != null) {
       StringTokenizer tokenizer = new StringTokenizer(object, JsonSerializer.TOKEN);
@@ -56,7 +56,16 @@ class JsonDeserializer implements Closeable {
     return null;
   }
 
-  private JsonSerializable createInstance(String clazz, String json) {
+  private String readNextJsonObject() throws DeserializationException {
+    try {
+      return jsonFromClient.readLine();
+    } catch (IOException e) {
+      throw new DeserializationException(e);
+    }
+  }
+  
+  private JsonSerializable createInstance(String clazz, String json)
+      throws DeserializationException {
     try {
       LOGGER.finest(String.format("Deserialzing %s into class %s", json, clazz));
       Class<?> implClass = Class.forName(clazz);

@@ -25,9 +25,10 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 import org.junit.Test;
+import org.mcrossplatform.core.transport.DeserializationException;
+import org.mcrossplatform.core.transport.SerializationException;
 
 public abstract class AbstractJsonSerializableTest<T extends JsonSerializable> {
   protected abstract Class<T> getType();
@@ -37,7 +38,7 @@ public abstract class AbstractJsonSerializableTest<T extends JsonSerializable> {
   protected abstract void assertDeserializationResult(T obj);
 
   @Test
-  public void serialize() throws IOException {
+  public void serialize() throws SerializationException {
     // arrange
     T testee = createTestee();
     ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -49,7 +50,7 @@ public abstract class AbstractJsonSerializableTest<T extends JsonSerializable> {
   }
 
   @Test
-  public void deserialize() throws IOException {
+  public void deserialize() throws DeserializationException {
     // arrange
     T reference = createTestee();
     String testee = getSerializedObject(reference);

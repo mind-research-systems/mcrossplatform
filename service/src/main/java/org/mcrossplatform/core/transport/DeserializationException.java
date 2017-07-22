@@ -20,11 +20,15 @@
 
 package org.mcrossplatform.core.transport;
 
-public class DeserializationException extends RuntimeException {
+public class DeserializationException extends Exception {
   private static final long serialVersionUID = 1L;
 
   public DeserializationException(String message, Throwable cause) {
     super(message, cause);
+  }
+
+  public DeserializationException(Throwable cause) {
+    super(cause);
   }
 
   public DeserializationException(String message) {

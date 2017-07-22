@@ -25,12 +25,13 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import org.mcrossplatform.core.service.ServiceException;
 import org.mcrossplatform.service.IJavaScript;
 
 
 @J2ObjCIncompatible
 public class JavaScriptImpl implements IJavaScript {
-  ScriptEngineManager engineManager = new ScriptEngineManager();
+  private final ScriptEngineManager engineManager = new ScriptEngineManager();
 
   @Override
   public IJavaScriptEngine createEngine(String javascript) {
@@ -56,7 +57,7 @@ public class JavaScriptImpl implements IJavaScript {
       try {
         return engine.eval(function);
       } catch (ScriptException e) {
-        throw new RuntimeException(
+        throw new ServiceException(
             String.format("Exception evaluating javascript function: '%s'", function), e);
       }
     }
