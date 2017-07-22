@@ -7,13 +7,60 @@
 	<packaging>pom</packaging>
 	<name>mcrossplatform</name>
 	<description>mobile development framework for applications with native ui and shared business logic</description>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>sonatype-nexus-snapshots</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</pluginRepository>
-	</pluginRepositories>
+	<inceptionYear>2017</inceptionYear>
+	<organization>
+		<name>MRS Internet Service GmbH</name>
+	</organization>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Donat Müller</name>
+			<email>donat@mrs.ch</email>
+			<organization>MRS Internet Service GmbH</organization>
+		</developer>
+	</developers>
+	<contributors/>
+	<mailingLists/>
+	<modules>
+		<module>service</module>
+	</modules>
+	<scm/>
+	<issueManagement>
+	<system>GitHub</system>
+	<url>https://github.com/mrs-internet-service-gmbh/mcrossplatform/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/mrs-internet-service-gmbh/mcrossplatform</url>
+	</ciManagement>
+	<distributionManagement/>
+	<properties>
+		<main.basedir>${project.basedir}</main.basedir>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<junit.version>4.11</junit.version>
+		<java.version>1.7</java.version>
+		<minimal-json.version>0.9.4</minimal-json.version>
+		<j2objc-plugin.version>1.1.4</j2objc-plugin.version>
+		<j2objc-annotations.version>1.3</j2objc-annotations.version>
+		<compiler-plugin.version>2.1</compiler-plugin.version>
+		<surefire-plugin-version>2.19.1</surefire-plugin-version>
+		<failsafe-plugin-version>2.19.1</failsafe-plugin-version>
+		<resource-plugin.version>3.0.1</resource-plugin.version>
+		<dependency-plugin.version>3.0.1</dependency-plugin.version>
+		<clean-plugin.version>3.0.0</clean-plugin.version>
+		<exec-plugin.version>1.5.0</exec-plugin.version>
+		<coveralls-plugin.version>4.3.0</coveralls-plugin.version>
+		<cobertura-plugin.version>2.7</cobertura-plugin.version>
+		<license-plugin.version>1.7</license-plugin.version>
+		<j2objc.path>${J2OBJC_HOME}</j2objc.path>
+	</properties>
+	<dependencyManagement/>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -32,6 +79,14 @@
 			<version>${minimal-json.version}</version>
 		</dependency>
 	</dependencies>
+	<repositories/>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>sonatype-nexus-snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -237,32 +292,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<modules>
-		<module>service</module>
-	</modules>
-	<properties>
-		<main.basedir>${project.basedir}</main.basedir>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<junit.version>4.11</junit.version>
-		<java.version>1.7</java.version>
-		<minimal-json.version>0.9.4</minimal-json.version>
-		<j2objc-plugin.version>1.1.4</j2objc-plugin.version>
-		<j2objc-annotations.version>1.3</j2objc-annotations.version>
-		<compiler-plugin.version>2.1</compiler-plugin.version>
-		<surefire-plugin-version>2.19.1</surefire-plugin-version>
-		<failsafe-plugin-version>2.19.1</failsafe-plugin-version>
-		<resource-plugin.version>3.0.1</resource-plugin.version>
-		<dependency-plugin.version>3.0.1</dependency-plugin.version>
-		<clean-plugin.version>3.0.0</clean-plugin.version>
-		<exec-plugin.version>1.5.0</exec-plugin.version>
-		<coveralls-plugin.version>4.3.0</coveralls-plugin.version>
-		<cobertura-plugin.version>2.7</cobertura-plugin.version>
-		<license-plugin.version>1.7</license-plugin.version>
-		<j2objc.path>${J2OBJC_HOME}</j2objc.path>
-	</properties>
-	<inceptionYear>2017</inceptionYear>
-	<organization>
-		<name>MRS Internet Service GmbH</name>
-	</organization>
 </project>

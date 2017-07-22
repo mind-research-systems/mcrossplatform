@@ -7,7 +7,11 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>service</artifactId>
+	<name>service</name>
 	<description>service definitions and infrastructure code</description>
+	<properties>
+		<main.basedir>${project.parent.basedir}</main.basedir>
+	</properties>
 	<build>
 		<plugins>
 			<plugin>
@@ -20,7 +24,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<properties>
-		<main.basedir>${project.parent.basedir}</main.basedir>
-	</properties>
 </project>
