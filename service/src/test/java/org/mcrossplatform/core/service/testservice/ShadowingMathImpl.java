@@ -17,19 +17,21 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.service.testservice;
 
 import org.mcrossplatform.service.IMath;
 
 /**
- * Default implementation of sample service IMath
+ * Default implementation of sample service IMath.
+ * 
  * @author donatmueller
  */
 public class ShadowingMathImpl implements IMath {
 
-	@Override
-	public int add(final int a, final int b) {
-		return a + b;
-	}
+  @Override
+  public int add(final int a, final int b) {
+    return a + b;
+  }
 
 }

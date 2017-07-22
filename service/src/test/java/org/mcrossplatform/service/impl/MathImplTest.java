@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.service.impl;
 
 import static org.junit.Assert.assertEquals;
@@ -24,16 +25,15 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.mcrossplatform.service.IMath;
 
-
 public class MathImplTest {
-	@Test
-	public void add_TwoPlusSeven_ReuturnsNine() {
-		// arrange
-		final IMath testee = new MathImpl();
-		// act
-		final int result = testee.add(2, 7);
-		// assert
-		assertEquals(9,result);
-	}
+  @Test
+  public void add_TwoPlusSeven_ReuturnsNine() {
+    // arrange
+    final IMath testee = new MathImpl();
+    // act
+    final int result = testee.add(2, 7);
+    // assert
+    assertEquals(9, result);
+  }
 
 }

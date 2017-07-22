@@ -17,17 +17,18 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.service.testservice;
 
 public class HelloServiceNoDefaultCtorImpl implements IHelloService {
 
-	public HelloServiceNoDefaultCtorImpl(final String gugus) {
-		// no default ctor
-	}
+  public HelloServiceNoDefaultCtorImpl(final String gugus) {
+    // no default ctor
+  }
 
-	@Override
-	public String sayHello() {
-		return null;
-	}
+  @Override
+  public String sayHello() {
+    return null;
+  }
 
 }

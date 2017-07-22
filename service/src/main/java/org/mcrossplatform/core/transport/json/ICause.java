@@ -17,12 +17,15 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.transport.json;
 
-
 public interface ICause extends JsonSerializable {
-	String getMessage();
-	ICause getCause();
-	IStackTraceElement[] getStackTrace();
-	Throwable toThrowable();
+  String getMessage();
+
+  ICause getCause();
+
+  IStackTraceElement[] getStackTrace();
+
+  Throwable toThrowable();
 }

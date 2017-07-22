@@ -17,8 +17,10 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.transport.json;
 
+import com.eclipsesource.json.JsonValue;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -27,45 +29,48 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.mcrossplatform.core.resource.ResourceCloser;
+import org.mcrossplatform.core.transport.SerializationException;
 import org.mcrossplatform.core.validation.Validate;
 
-import com.eclipsesource.json.JsonValue;
 
 /**
- * Protocol: [#<className>#<JsonValue>]
+ * Protocol: [#&lt;className&gt;#&lt;JsonValue&gt;\r\n].
+ * 
  * @author donatmueller
  *
  */
 class JsonSerializer implements Closeable {
-	private final static Logger LOGGER = Logger.getLogger(JsonSerializer.class.getName());
-	final static String TOKEN="\f";
-	final static String NEXT_OBJECT="\r\n";
-	private final OutputStreamWriter jsonToServer;
+  private static final Logger LOGGER = Logger.getLogger(JsonSerializer.class.getName());
+  public static final String TOKEN = "\f";
+  public static final String NEXT_OBJECT = "\r\n";
+  private final OutputStreamWriter jsonToServer;
 
-	JsonSerializer(OutputStream out) {
-		this.jsonToServer = new OutputStreamWriter(out);
-	}
+  JsonSerializer(OutputStream out) {
+    this.jsonToServer = new OutputStreamWriter(out);
+  }
 
-	void serialize(JsonSerializable object) throws IOException {
-		Validate.notNull(object);
-		try {
-			LOGGER.finest(String.format("Serializing %s from class %s", object,object.getClass().getName()));
-			String clazz = object.getClass().getName();
-			JsonValue jsonObject = object.toJson();
-			jsonToServer.write(TOKEN);
-			jsonToServer.write(clazz);
-			jsonToServer.write(TOKEN);
-			jsonObject.writeTo(jsonToServer);
-			jsonToServer.write(NEXT_OBJECT);
-			jsonToServer.flush();
-		} catch (Exception e) {
-			String message = String.format("Failed serialzing %s from class %s", object,object.getClass().getName());
-			LOGGER.log(Level.SEVERE, message, e);
-			throw new RuntimeException(message,e);
-		}
-	}
+  void serialize(JsonSerializable object) throws IOException {
+    Validate.notNull(object);
+    try {
+      LOGGER.finest(
+          String.format("Serializing %s from class %s", object, object.getClass().getName()));
+      String clazz = object.getClass().getName();
+      final JsonValue jsonObject = object.toJson();
+      jsonToServer.write(TOKEN);
+      jsonToServer.write(clazz);
+      jsonToServer.write(TOKEN);
+      jsonObject.writeTo(jsonToServer);
+      jsonToServer.write(NEXT_OBJECT);
+      jsonToServer.flush();
+    } catch (Exception e) {
+      String message = String.format("Failed serialzing %s from class %s", object,
+          object.getClass().getName());
+      LOGGER.log(Level.SEVERE, message, e);
+      throw new SerializationException(message, e);
+    }
+  }
 
-	public void close() {
-		ResourceCloser.close(jsonToServer);
-	}
+  public void close() {
+    ResourceCloser.close(jsonToServer);
+  }
 }

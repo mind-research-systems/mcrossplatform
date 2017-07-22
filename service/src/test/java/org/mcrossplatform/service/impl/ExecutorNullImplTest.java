@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.service.impl;
 
 import static org.junit.Assert.assertEquals;
@@ -24,16 +25,15 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.mcrossplatform.service.IExecutor;
 
-
 public class ExecutorNullImplTest {
 
-	@Test
-	public void execute_ReturnsZero() throws Exception {
-		// arrange
-		final IExecutor testee = new ExecutorNullImpl();
-		// act
-		final int result = testee.execute("foo", "1","bar");
-		// assert
-		assertEquals(0,result);
-	}
+  @Test
+  public void execute_ReturnsZero() throws Exception {
+    // arrange
+    final IExecutor testee = new ExecutorNullImpl();
+    // act
+    final int result = testee.execute("foo", "1", "bar");
+    // assert
+    assertEquals(0, result);
+  }
 }

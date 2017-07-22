@@ -17,26 +17,27 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.transport.json;
 
 import static org.junit.Assert.assertEquals;
 
 public class StackTraceElementImplTest extends AbstractJsonSerializableTest<StackTraceElementImpl> {
 
-	@Override
-	protected Class<StackTraceElementImpl> getType() {
-		return StackTraceElementImpl.class;
-	}
+  @Override
+  protected Class<StackTraceElementImpl> getType() {
+    return StackTraceElementImpl.class;
+  }
 
-	@Override
-	protected StackTraceElementImpl createTestee() {
-		return new StackTraceElementImpl("MyClass","MyMethod",null,42);
-	}
+  @Override
+  protected StackTraceElementImpl createTestee() {
+    return new StackTraceElementImpl("MyClass", "MyMethod", null, 42);
+  }
 
-	@Override
-	protected void assertDeserializationResult(StackTraceElementImpl obj) {
-		assertEquals("MyClass",obj.getDeclaringClass());
-		assertEquals("MyMethod",obj.getMethodName());
-		assertEquals(42,obj.getLineNumber());
-	}
+  @Override
+  protected void assertDeserializationResult(StackTraceElementImpl obj) {
+    assertEquals("MyClass", obj.getDeclaringClass());
+    assertEquals("MyMethod", obj.getMethodName());
+    assertEquals(42, obj.getLineNumber());
+  }
 }

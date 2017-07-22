@@ -17,16 +17,17 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.resource;
 
 public class ResourceException extends RuntimeException {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public ResourceException(Throwable cause) {
-		super(cause);
-	}
+  public ResourceException(Throwable cause) {
+    super(cause);
+  }
 
-	public ResourceException(String message) {
-		super(message);
-	}
+  public ResourceException(String message) {
+    super(message);
+  }
 }

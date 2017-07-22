@@ -17,46 +17,49 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.service.impl;
 
+import com.google.j2objc.annotations.J2ObjCIncompatible;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import org.mcrossplatform.service.IJavaScript;
 
-import com.google.j2objc.annotations.J2ObjCIncompatible;
 
 @J2ObjCIncompatible
 public class JavaScriptImpl implements IJavaScript {
-	ScriptEngineManager engineManager = new ScriptEngineManager();
+  ScriptEngineManager engineManager = new ScriptEngineManager();
 
-	@Override
-	public IJavaScriptEngine createEngine(String javascript) {
-		 try {
-			ScriptEngine engine = engineManager.getEngineByName("JavaScript");
-			 engine.eval(javascript);
-			return new JavaScriptEngineImpl(engine);
-		} catch (ScriptException e) {
-			throw new RuntimeException(String.format("Exception creating javascript engin with script: '%s'", javascript),e);
-		}
-	}
-	
-	private static class JavaScriptEngineImpl implements IJavaScriptEngine {
-		private final ScriptEngine engine;
-		
-		JavaScriptEngineImpl(ScriptEngine engine) {
-			this.engine = engine;
-		}
+  @Override
+  public IJavaScriptEngine createEngine(String javascript) {
+    try {
+      ScriptEngine engine = engineManager.getEngineByName("JavaScript");
+      engine.eval(javascript);
+      return new JavaScriptEngineImpl(engine);
+    } catch (ScriptException e) {
+      throw new RuntimeException(
+          String.format("Exception creating javascript engin with script: '%s'", javascript), e);
+    }
+  }
 
-		@Override
-		public Object evaluate(String function) {
-			try {
-				return engine.eval(function);
-			} catch (ScriptException e) {
-				throw new RuntimeException(String.format("Exception evaluating javascript function: '%s'", function),e);
-			}
-		}
-	}
+  private static class JavaScriptEngineImpl implements IJavaScriptEngine {
+    private final ScriptEngine engine;
+
+    JavaScriptEngineImpl(ScriptEngine engine) {
+      this.engine = engine;
+    }
+
+    @Override
+    public Object evaluate(String function) {
+      try {
+        return engine.eval(function);
+      } catch (ScriptException e) {
+        throw new RuntimeException(
+            String.format("Exception evaluating javascript function: '%s'", function), e);
+      }
+    }
+  }
 
 }

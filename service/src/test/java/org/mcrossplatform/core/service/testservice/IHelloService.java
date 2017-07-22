@@ -17,8 +17,9 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.service.testservice;
 
 public interface IHelloService {
-	String sayHello();
+  String sayHello();
 }

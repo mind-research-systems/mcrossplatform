@@ -17,36 +17,58 @@
  * limitations under the License.
  * #L%
  */
-package org.mcrossplatform.core.validation;
 
-import org.mcrossplatform.core.transport.json.JsonSerializable;
+package org.mcrossplatform.core.validation;
 
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
+import org.mcrossplatform.core.transport.json.JsonSerializable;
+
 
 public class Validate {
-	public static void notNull(Object obj) {
-		if (obj == null) {
-			throw new IllegalArgumentException("expected not to be null");
-		}
-	}
-	
-	public static void greaterThan(int minCount, int actualCount) {
-		if (actualCount < minCount) {
-			throw new IllegalArgumentException(String.format("expected at least %s but not %s",minCount,actualCount));
-		}
-	}
-	
-	public static void jsonObject(JsonValue jsonValue) {
-		if (!(jsonValue instanceof JsonObject)) {
-			throw new IllegalArgumentException(String.format("JsonObject expected and not %s", jsonValue));
-		}
-	}
+  /**
+   * Throws an IllegalArgumentException if obj is null.
+   * @param obj Object
+   */
+  public static void notNull(Object obj) {
+    if (obj == null) {
+      throw new IllegalArgumentException("expected not to be null");
+    }
+  }
 
-	public static void jsonSerializable(Object obj) {
-		if (!(obj instanceof JsonSerializable)) {
-			throw new IllegalArgumentException(String.format("Unsupported parameter type %s JsonSerializable expected.", obj == null ? "<null>" : obj.getClass().getName()));
-		}
-	}
+  /**
+   * Throws an IllegalArgumentException if actualCount < minCount.
+   * @param minCount minimal value
+   * @param actualCount actual value
+   */
+  public static void greaterThan(int minCount, int actualCount) {
+    if (actualCount < minCount) {
+      throw new IllegalArgumentException(
+          String.format("expected at least %s but not %s", minCount, actualCount));
+    }
+  }
+
+  /**
+   * Throws an IllegalArgumentException if JsonValue is not a JsonObject.
+   * @param jsonValue JsonValue
+   */
+  public static void jsonObject(JsonValue jsonValue) {
+    if (!(jsonValue instanceof JsonObject)) {
+      throw new IllegalArgumentException(
+          String.format("JsonObject expected and not %s", jsonValue));
+    }
+  }
+
+  /**
+   * Throws an IllegalArgumentException if Object is not JsonSerializable.
+   * @param obj Object
+   */
+  public static void jsonSerializable(Object obj) {
+    if (!(obj instanceof JsonSerializable)) {
+      throw new IllegalArgumentException(
+          String.format("Unsupported parameter type %s JsonSerializable expected.",
+              obj == null ? "<null>" : obj.getClass().getName()));
+    }
+  }
 
 }

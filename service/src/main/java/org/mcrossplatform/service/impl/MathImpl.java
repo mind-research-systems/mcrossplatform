@@ -17,19 +17,21 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.service.impl;
 
 import org.mcrossplatform.service.IMath;
 
 /**
- * Another implementation of sample service IMath
+ * Another implementation of sample service IMath.
+ * 
  * @author donatmueller
  */
 public class MathImpl implements IMath {
 
-	@Override
-	public int add(final int a, final int b) {
-		return a + b;
-	}
+  @Override
+  public int add(final int a, final int b) {
+    return a + b;
+  }
 
 }

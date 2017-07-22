@@ -17,10 +17,11 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.transport.json;
 
 import com.eclipsesource.json.JsonValue;
 
 public interface JsonSerializable {
-	JsonValue toJson();
+  JsonValue toJson();
 }

@@ -18,14 +18,17 @@
  * #L%
  */
 
-package org.mcrossplatform.service;
+package org.mcrossplatform.core.transport;
 
-/**
- * Service to launch an external program.
- * 
- * @author donatmueller
- *
- */
-public interface IExecutor {
-  int execute(String programm, String... args) throws Exception;
+public class DeserializationException extends RuntimeException {
+  private static final long serialVersionUID = 1L;
+
+  public DeserializationException(String message, Throwable cause) {
+    super(message, cause);
+  }
+
+  public DeserializationException(String message) {
+    super(message);
+  }
+
 }

@@ -17,16 +17,17 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.transport.json;
 
-public interface IStackTraceElement extends JsonSerializable  {
+public interface IStackTraceElement extends JsonSerializable {
 
-	public abstract String getDeclaringClass();
+  public abstract String getDeclaringClass();
 
-	public abstract String getMethodName();
+  public abstract String getMethodName();
 
-	public abstract String getFileName();
+  public abstract String getFileName();
 
-	public abstract int getLineNumber();
+  public abstract int getLineNumber();
 
 }

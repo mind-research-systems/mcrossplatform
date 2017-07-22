@@ -17,29 +17,29 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.transport.json;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.mcrossplatform.core.transport.json.CauseImpl;
+public class CauseImplTest extends AbstractJsonSerializableTest<CauseImpl> {
 
-public class CauseImplTest  extends AbstractJsonSerializableTest<CauseImpl> {
+  @Override
+  protected Class<CauseImpl> getType() {
+    return CauseImpl.class;
+  }
 
-	@Override
-	protected Class<CauseImpl> getType() {
-		return CauseImpl.class;
-	}
+  @Override
+  protected CauseImpl createTestee() {
+    Exception e = new Exception("An Exception");
+    return CauseImpl.newInstance(e);
+  }
 
-	@Override
-	protected CauseImpl createTestee() {
-		Exception e = new Exception("An Exception");
-		return CauseImpl.newInstance(e);
-	}
-
-	@Override
-	protected void assertDeserializationResult(CauseImpl obj) {
-		assertEquals("java.lang.Exception: An Exception",obj.getMessage());
-		assertTrue(obj.getStackTrace().length>24);
-	}
+  @Override
+  protected void assertDeserializationResult(CauseImpl obj) {
+    assertEquals("java.lang.Exception: An Exception", obj.getMessage());
+    assertTrue(obj.getStackTrace().length > 24);
+  }
 
 }

@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.resource;
 
 import java.io.File;
@@ -24,26 +25,31 @@ import java.io.FileInputStream;
 import java.util.logging.LogManager;
 
 public class LogConfigurationReader {
-	private static final String LOGGING_PROPERTIES = "logging.properties";
-	public static void readLogProperties() {
-		readLogProperties(LOGGING_PROPERTIES);
-	}
+  private static final String LOGGING_PROPERTIES = "logging.properties";
 
-	public static void readLogProperties(final String loggingProperties) {
-		final File logProperties = FileResourceLocator.findFile(loggingProperties, true);
-		if (logProperties!=null) {			
-			try {
-				LogManager.getLogManager().readConfiguration(new FileInputStream(logProperties));
-			} catch (final Exception e) {
-				throw new ResourceException(e);
-			} 
-		} else {
-			System.out.println(String.format("WARNING: Log properteis %s not found",loggingProperties));
-		}
-	}
-	
-	private LogConfigurationReader() {
-		// private ctor
-	}
+  public static void readLogProperties() {
+    readLogProperties(LOGGING_PROPERTIES);
+  }
+
+  /**
+   * Read the given logging properties file for java.logging.
+   * @param loggingProperties file name 
+   */
+  public static void readLogProperties(final String loggingProperties) {
+    final File logProperties = FileResourceLocator.findFile(loggingProperties, true);
+    if (logProperties != null) {
+      try {
+        LogManager.getLogManager().readConfiguration(new FileInputStream(logProperties));
+      } catch (final Exception e) {
+        throw new ResourceException(e);
+      }
+    } else {
+      System.out.println(String.format("WARNING: Log properteis %s not found", loggingProperties));
+    }
+  }
+
+  private LogConfigurationReader() {
+    // private ctor
+  }
 
 }
