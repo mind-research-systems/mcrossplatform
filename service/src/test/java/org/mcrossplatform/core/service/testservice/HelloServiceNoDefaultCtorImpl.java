@@ -22,13 +22,15 @@ package org.mcrossplatform.core.service.testservice;
 
 public class HelloServiceNoDefaultCtorImpl implements IHelloService {
 
-  public HelloServiceNoDefaultCtorImpl(final String gugus) {
-    // no default ctor
+  private final String message;
+  
+  public HelloServiceNoDefaultCtorImpl(final String message) {
+    this.message = message;
   }
 
   @Override
   public String sayHello() {
-    return null;
+    return message;
   }
 
 }
