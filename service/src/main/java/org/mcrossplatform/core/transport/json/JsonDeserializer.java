@@ -42,7 +42,7 @@ class JsonDeserializer implements Closeable {
     this.jsonFromClient = new BufferedReader(new InputStreamReader(in));
   }
 
-  JsonSerializable deserialize() throws DeserializationException {
+  public JsonSerializable deserialize() throws DeserializationException {
     String object = readNextJsonObject();
     LOGGER.finest(object);
     if (object != null) {

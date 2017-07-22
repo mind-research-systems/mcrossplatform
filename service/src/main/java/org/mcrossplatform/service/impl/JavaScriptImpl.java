@@ -40,7 +40,7 @@ public class JavaScriptImpl implements IJavaScript {
       engine.eval(javascript);
       return new JavaScriptEngineImpl(engine);
     } catch (ScriptException e) {
-      throw new RuntimeException(
+      throw new ServiceException(
           String.format("Exception creating javascript engin with script: '%s'", javascript), e);
     }
   }

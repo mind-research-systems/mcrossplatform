@@ -31,8 +31,6 @@ import org.mcrossplatform.core.resource.ResourceCloser;
 import org.mcrossplatform.core.transport.SerializationException;
 import org.mcrossplatform.core.validation.Validate;
 
-
-
 /**
  * Protocol: [#&lt;className&gt;#&lt;JsonValue&gt;\r\n].
  * 
@@ -49,7 +47,7 @@ class JsonSerializer implements Closeable {
     this.jsonToServer = new OutputStreamWriter(out);
   }
 
-  void serialize(JsonSerializable object) throws SerializationException {
+  public void serialize(JsonSerializable object) throws SerializationException {
     Validate.notNull(object);
     try {
       LOGGER.finest(
