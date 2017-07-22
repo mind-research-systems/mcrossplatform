@@ -29,7 +29,11 @@
 	<modules>
 		<module>service</module>
 	</modules>
-	<scm/>
+	<scm>
+		<connection>scm:git:git://github.com/com:mrs-internet-service-gmbh/mcrossplatform.git</connection>
+		<developerConnection>scm:git:ssh://github.com:com:mrs-internet-service-gmbh/mcrossplatform.git</developerConnection>
+		<url>https://github.com/mrs-internet-service-gmbh/mcrossplatform/tree/master</url>
+	</scm>
 	<issueManagement>
 	<system>GitHub</system>
 	<url>https://github.com/mrs-internet-service-gmbh/mcrossplatform/issues</url>
@@ -38,7 +42,16 @@
 		<system>Travis CI</system>
 		<url>https://travis-ci.org/mrs-internet-service-gmbh/mcrossplatform</url>
 	</ciManagement>
-	<distributionManagement/>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 	<properties>
 		<main.basedir>${project.basedir}</main.basedir>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -46,9 +59,13 @@
 		<junit.version>4.11</junit.version>
 		<java.version>1.7</java.version>
 		<minimal-json.version>0.9.4</minimal-json.version>
-		<j2objc-plugin.version>1.1.4</j2objc-plugin.version>
 		<j2objc-annotations.version>1.3</j2objc-annotations.version>
 		<compiler-plugin.version>2.1</compiler-plugin.version>
+		<j2objc-plugin.version>1.1.4</j2objc-plugin.version>
+		<lifecycle-plugin.version>1.0.0</lifecycle-plugin.version>
+		<source-plugin.version>2.2.1</source-plugin.version>
+		<javadoc-plugin.version>2.9.1</javadoc-plugin.version>
+		<enforcer-plugin-version>1.0.1</enforcer-plugin-version>
 		<surefire-plugin-version>2.19.1</surefire-plugin-version>
 		<failsafe-plugin-version>2.19.1</failsafe-plugin-version>
 		<resource-plugin.version>3.0.1</resource-plugin.version>
@@ -146,7 +163,7 @@
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
+					<version>${lifecycle-plugin.version}</version>
 					<configuration>
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
@@ -198,8 +215,34 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${source-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${javadoc-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>1.0.1</version>
+				<version>${enforcer-plugin-version}</version>
 				<executions>
 					<execution>
 						<id>enforce-property</id>
@@ -211,8 +254,7 @@
 								<requireProperty>
 									<property>j2objc.path</property>
 									<message>You must define the path to your j2objc installation.
-										TODO: Export J2OBJC_HOME in your environment variables
-										configuration.</message>
+TODO: Export J2OBJC_HOME in your environment variables configuration.</message>
 								</requireProperty>
 							</rules>
 							<fail>true</fail>
