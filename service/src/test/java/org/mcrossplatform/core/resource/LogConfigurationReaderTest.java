@@ -57,7 +57,7 @@ public class LogConfigurationReaderTest {
   @Test
   public void readLogProperties_PropertiesFileFound_TwoHandlers() {
     // arrange & act
-    LogConfigurationReader.readLogProperties();
+    LogConfigurationReader.readLogProperties("test-logging.properties");
     // assert
     final Handler[] handlers = LogManager.getLogManager().getLogger("").getHandlers();
     assertEquals(2, handlers.length);
@@ -99,7 +99,7 @@ public class LogConfigurationReaderTest {
   public void log_AllLevels_LogFileWritten() throws Exception {
     // arrange
     removeFileIfExists("test.log");
-    LogConfigurationReader.readLogProperties();
+    LogConfigurationReader.readLogProperties("test-logging.properties");
     Logger logger = Logger.getLogger("TestLogger");
     logger.setLevel(Level.ALL);
     // act
