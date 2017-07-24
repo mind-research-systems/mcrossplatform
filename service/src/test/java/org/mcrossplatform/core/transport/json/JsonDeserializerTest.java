@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.transport.json;
 
 import static org.junit.Assert.assertNull;

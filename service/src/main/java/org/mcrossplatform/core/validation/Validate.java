@@ -24,11 +24,17 @@ import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 import org.mcrossplatform.core.transport.json.JsonSerializable;
 
+public final class Validate {
 
-public class Validate {
+  private Validate() {
+    // no public ctor
+  }
+
   /**
    * Throws an IllegalArgumentException if obj is null.
-   * @param obj Object
+   * 
+   * @param obj
+   *          Object
    */
   public static void notNull(Object obj) {
     if (obj == null) {
@@ -38,8 +44,11 @@ public class Validate {
 
   /**
    * Throws an IllegalArgumentException if actualCount < minCount.
-   * @param minCount minimal value
-   * @param actualCount actual value
+   * 
+   * @param minCount
+   *          minimal value
+   * @param actualCount
+   *          actual value
    */
   public static void greaterThan(int minCount, int actualCount) {
     if (actualCount < minCount) {
@@ -50,7 +59,9 @@ public class Validate {
 
   /**
    * Throws an IllegalArgumentException if JsonValue is not a JsonObject.
-   * @param jsonValue JsonValue
+   * 
+   * @param jsonValue
+   *          JsonValue
    */
   public static void jsonObject(JsonValue jsonValue) {
     if (!(jsonValue instanceof JsonObject)) {
@@ -61,7 +72,9 @@ public class Validate {
 
   /**
    * Throws an IllegalArgumentException if Object is not JsonSerializable.
-   * @param obj Object
+   * 
+   * @param obj
+   *          Object
    */
   public static void jsonSerializable(Object obj) {
     if (!(obj instanceof JsonSerializable)) {

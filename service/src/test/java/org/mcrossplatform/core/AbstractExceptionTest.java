@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core;
 
 import java.lang.reflect.InvocationTargetException;

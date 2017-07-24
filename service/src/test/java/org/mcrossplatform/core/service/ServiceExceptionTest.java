@@ -17,6 +17,7 @@
  * limitations under the License.
  * #L%
  */
+
 package org.mcrossplatform.core.service;
 
 import org.mcrossplatform.core.AbstractExceptionTest;
