@@ -108,4 +108,11 @@ public class ValidateTest {
       }
     });
   }
+
+  @Test
+  public void newInstance_void_throwsIllegalAccessException() throws Exception {
+    // arrange & pre assert
+    exceptionRule.expect(IllegalAccessException.class);
+    Validate.class.newInstance();
+  }
 }
