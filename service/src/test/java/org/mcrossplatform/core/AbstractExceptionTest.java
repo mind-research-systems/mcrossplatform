@@ -28,11 +28,11 @@ import org.junit.rules.ExpectedException;
 import org.mcrossplatform.core.transport.DeserializationException;
 
 public abstract class AbstractExceptionTest<T extends Throwable> {
+  @Rule
+  public ExpectedException exceptionRule = ExpectedException.none();
 
   protected abstract Class<T> getType();
 
-  @Rule
-  public ExpectedException exceptionRule = ExpectedException.none();
 
   @Test
   public void ctor_WithMessage_HasMessage() throws DeserializationException, InstantiationException,
