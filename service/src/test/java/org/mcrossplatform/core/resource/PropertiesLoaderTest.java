@@ -24,6 +24,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.FileNotFoundException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
@@ -32,11 +33,12 @@ import java.util.Properties;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mcrossplatform.test.CauseMatcher;
 
 public class PropertiesLoaderTest {
 
   @Rule
-  public ExpectedException exception = ExpectedException.none();
+  public ExpectedException exceptionRule = ExpectedException.none();
 
   @Test
   public void loadProperties_FileNotExistsMyReturnNull_ReturnsNull() {
@@ -49,8 +51,8 @@ public class PropertiesLoaderTest {
   @Test
   public void loadProperties_FileNotExistsMyNotReturnNull_Exception() {
     // arrange & assert
-    exception.expect(RuntimeException.class);
-    exception.expectMessage(
+    exceptionRule.expect(ResourceException.class);
+    exceptionRule.expectMessage(
         "File: foo not found in path: [./, ./src/test/resources, ./src/main/resources].");
     // act
     PropertiesLoader.loadProperties("foo", false);
@@ -59,9 +61,9 @@ public class PropertiesLoaderTest {
   @Test
   public void loadProperties_DirectoryExists_Exception() {
     // arrange & assert
-    exception.expect(RuntimeException.class);
-    // exception.expectMessage("./src/test/resources/DirectoryNotAFile (Is a directory)\" message
-    // was \"Exception while loading ./src/test/resources/DirectoryNotAFile");
+    exceptionRule.expect(RuntimeException.class);
+    exceptionRule.expectCause(new CauseMatcher(FileNotFoundException.class,
+        "./src/test/resources/DirectoryNotAFile (Is a directory)"));
     // act
     PropertiesLoader.loadProperties("DirectoryNotAFile", false);
   }

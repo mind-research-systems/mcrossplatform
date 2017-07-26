@@ -23,6 +23,7 @@ package org.mcrossplatform.core.transport.json;
 import static org.junit.Assert.assertNull;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.Ignore;
@@ -30,6 +31,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mcrossplatform.core.transport.DeserializationException;
+import org.mcrossplatform.test.CauseMatcher;
 
 public class JsonDeserializerTest {
   @Rule
@@ -54,6 +56,7 @@ public class JsonDeserializerTest {
     InputStream in = new ByteArrayInputStream("".getBytes());
     final JsonDeserializer testee = new JsonDeserializer(in);
     exceptionRule.expect(DeserializationException.class);
+    exceptionRule.expectCause(new CauseMatcher(IOException.class, "Stream closed"));
     // act
     testee.close();
     testee.deserialize();
@@ -61,6 +64,7 @@ public class JsonDeserializerTest {
 
   @Test
   @Ignore
+  // TODO #10 Resolve Eclipse Junit issue
   public void deserialize_UnklnownClass_ThrowsDeserializationException()
       throws DeserializationException {
     // arrange & pre assert
@@ -69,6 +73,8 @@ public class JsonDeserializerTest {
             .getBytes());
     final JsonDeserializer testee = new JsonDeserializer(in);
     exceptionRule.expect(DeserializationException.class);
+    exceptionRule.expectMessage("Failed deserialzing bar into class foo");
+    exceptionRule.expectCause(new CauseMatcher(ClassNotFoundException.class, "foo"));
     // act
     testee.deserialize();
     testee.close();
