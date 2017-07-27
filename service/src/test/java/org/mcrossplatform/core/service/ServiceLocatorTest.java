@@ -57,7 +57,7 @@ public class ServiceLocatorTest {
   }
 
   @Before
-  public void setup() {
+  public void resetServiceLocator() {
     ServiceLocator.reset();
   }
 
