@@ -3,13 +3,20 @@ mobile development framework for applications with native ui and shared business
 
 [![Build Status](https://travis-ci.org/mrs-internet-service-gmbh/mcrossplatform.svg?branch=master)](https://travis-ci.org/mrs-internet-service-gmbh/mcrossplatform) [![Coverage Status](https://coveralls.io/repos/github/mrs-internet-service-gmbh/mcrossplatform/badge.svg?branch=master)](https://coveralls.io/github/mrs-internet-service-gmbh/mcrossplatform?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f6dcf3bcf423493e904eeac037697fae)](https://www.codacy.com/app/donat-mueller/mcrossplatform?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mrs-internet-service-gmbh/mcrossplatform&amp;utm_campaign=Badge_Grade)
 
-# vision
+Table of contents
+=================
+
+  * [About](#about)
+  * [Service](#service)
+
+# About
 This project provides a framework for crossplatform mobile application development. We, [among others](https://www.martinfowler.com/bliki/CrossPlatformMobile.html) believe  that the presentation layer of a mobile application should be implemented in native technology. But implementing the business layer of the application from scratch for each platform is an **expensive**, **error prone** and **boring** job. Our approach is to provide the business logic as a Micro Service to the presentation layer. First you design your Service Interface Layer for your application. Then you can program your native mobile application against that interface. The Business Layer is written in Java with Junit & Logging by RemoteSuite & RemoteLogging support for unit and integration tests for your business logic. 
 
 ![Mobile Architecture](https://user-images.githubusercontent.com/11026671/28636943-21593eba-7240-11e7-8abb-09f43ce223ad.gif)
 
 The framework provides infrastructure for resource and service location to the presentation layer. And from the Business Layer to the operating system a Resource Access Layer that provides services that encapsulate platform specific strategies to access distributed resources.
-# service 
+
+# Service 
 The service module defines its services in the package `org.mcrossplatform.service` and a stub or cross platform independent implementation in the package `org.mcrossplatform.service.impl`.
 The framework `mcrossplatform` it self provides infrastructure code for the following topics in the package `org.mcrossplatform.core`:
 * File access (class: FileResourceLocator)
