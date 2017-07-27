@@ -23,6 +23,10 @@
 			<email>donat@mrs.ch</email>
 			<organization>MRS Internet Service GmbH</organization>
 		</developer>
+		<developer>
+			<name>Jakub Petrík</name>
+			<email>jakub.petrik@icloud.com</email>
+		</developer>
 	</developers>
 	<contributors/>
 	<mailingLists/>
